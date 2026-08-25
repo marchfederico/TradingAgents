@@ -131,10 +131,13 @@ DEFAULT_CONFIG = _apply_env_overrides({
     # routed to vendors you didn't choose. For ordered fallback, list several,
     # e.g. "yfinance,alpha_vantage". "default" uses all available vendors.
     "data_vendors": {
-        "core_stock_apis": "yfinance",       # Options: alpha_vantage, yfinance
-        "technical_indicators": "yfinance",  # Options: alpha_vantage, yfinance
-        "fundamental_data": "yfinance",      # Options: alpha_vantage, yfinance
-        "news_data": "yfinance",             # Options: alpha_vantage, yfinance
+        "core_stock_apis": "yfinance",       # Options: alpha_vantage, yfinance, massive
+        "technical_indicators": "yfinance",  # Options: alpha_vantage, yfinance, massive
+        "fundamental_data": "yfinance",      # Options: alpha_vantage, yfinance, massive
+        "news_data": "yfinance",             # Options: alpha_vantage, yfinance, massive
+                                             #   (massive needs MASSIVE_API_KEY and has no
+                                             #   insider transactions — chain it, e.g.
+                                             #   "massive,yfinance", to keep that tool served)
         "macro_data": "fred",                # Options: fred (needs FRED_API_KEY)
         "prediction_markets": "polymarket",  # Options: polymarket (keyless)
     },

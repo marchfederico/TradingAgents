@@ -18,6 +18,17 @@ from .errors import (
     VendorRateLimitError,
 )
 from .fred import get_macro_data as get_fred_macro_data
+from .massive import (
+    get_balance_sheet as get_massive_balance_sheet,
+    get_cashflow as get_massive_cashflow,
+    get_fundamentals as get_massive_fundamentals,
+    get_global_news as get_massive_global_news,
+    get_income_statement as get_massive_income_statement,
+    get_indicator as get_massive_indicator,
+    get_insider_transactions as get_massive_insider_transactions,
+    get_news as get_massive_news,
+    get_stock as get_massive_stock,
+)
 from .polymarket import get_prediction_markets as get_polymarket_prediction_markets
 from .y_finance import (
     get_balance_sheet as get_yfinance_balance_sheet,
@@ -82,6 +93,7 @@ VENDOR_LIST = [
     "fred",
     "polymarket",
     "alpha_vantage",
+    "massive",
 ]
 
 # Optional enrichment categories. These add macro/event context to the news
@@ -97,41 +109,52 @@ VENDOR_METHODS = {
     "get_stock_data": {
         "alpha_vantage": get_alpha_vantage_stock,
         "yfinance": get_YFin_data_online,
+        "massive": get_massive_stock,
     },
     # technical_indicators
     "get_indicators": {
         "alpha_vantage": get_alpha_vantage_indicator,
         "yfinance": get_stock_stats_indicators_window,
+        "massive": get_massive_indicator,
     },
     # fundamental_data
     "get_fundamentals": {
         "alpha_vantage": get_alpha_vantage_fundamentals,
         "yfinance": get_yfinance_fundamentals,
+        "massive": get_massive_fundamentals,
     },
     "get_balance_sheet": {
         "alpha_vantage": get_alpha_vantage_balance_sheet,
         "yfinance": get_yfinance_balance_sheet,
+        "massive": get_massive_balance_sheet,
     },
     "get_cashflow": {
         "alpha_vantage": get_alpha_vantage_cashflow,
         "yfinance": get_yfinance_cashflow,
+        "massive": get_massive_cashflow,
     },
     "get_income_statement": {
         "alpha_vantage": get_alpha_vantage_income_statement,
         "yfinance": get_yfinance_income_statement,
+        "massive": get_massive_income_statement,
     },
     # news_data
     "get_news": {
         "alpha_vantage": get_alpha_vantage_news,
         "yfinance": get_news_yfinance,
+        "massive": get_massive_news,
     },
     "get_global_news": {
         "yfinance": get_global_news_yfinance,
         "alpha_vantage": get_alpha_vantage_global_news,
+        "massive": get_massive_global_news,
     },
     "get_insider_transactions": {
         "alpha_vantage": get_alpha_vantage_insider_transactions,
         "yfinance": get_yfinance_insider_transactions,
+        # Massive has no insider endpoint; its impl raises NoMarketDataError so
+        # a chain like "massive,yfinance" falls through to a vendor that does.
+        "massive": get_massive_insider_transactions,
     },
     # macro_data
     "get_macro_indicators": {
