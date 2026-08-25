@@ -145,6 +145,7 @@ export MINIMAX_API_KEY=...         # MiniMax — Global (api.minimax.io)
 export MINIMAX_CN_API_KEY=...      # MiniMax — China (api.minimaxi.com)
 export OPENROUTER_API_KEY=...      # OpenRouter
 export ALPHA_VANTAGE_API_KEY=...   # Alpha Vantage
+export MASSIVE_API_KEY=...         # Massive (massive.com, formerly Polygon.io)
 ```
 
 For Azure OpenAI, copy `.env.enterprise.example` to `.env.enterprise` and fill in your credentials.
